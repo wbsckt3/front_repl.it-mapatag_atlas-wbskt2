@@ -73,7 +73,7 @@ function createCalendarDay(day, month) {
   //a.href = "sync/index.html?date=" + encodeURIComponent(dateText);
   const user = localStorage.getItem("dailyTasksUser");
   a.href =
-    "https://pf87f6-3000.csb.app/index2.html?user-date=" +
+    "https://wbsckt3.github.io/front_REPLIT-mapatag_ATLAS-wbskt2/index2.html?user-date=" +
     user +
     "_" +
     encodeURIComponent(dateText);
