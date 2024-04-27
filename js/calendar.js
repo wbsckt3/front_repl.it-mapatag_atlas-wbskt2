@@ -6,11 +6,7 @@ window.onload = function () {
 
 function createCalendarMonth(month) {
   var title = document.getElementById("title");
-  title.innerHTML =
-    monthAsString(month) +
-    " - " +
-    today.getFullYear() +
-    " | Selecciona el día para Agregar Persona";
+  title.innerHTML = "Mes " + monthAsString(month) + " | " + today.getFullYear();
 
   clearCalendar();
   var currentCalendar = document.getElementById("calendar");
