@@ -219,43 +219,41 @@
    
   <script>
     var greenIcon = L.icon({
-      iconUrl: '/icon.png'
+        iconUrl: '/icon.png'
     });
     const options = {
-      enableHighAccuracy: true,
-      maximumAge: 1000, // 1s
-      timeout: 2000 // 2s
+        enableHighAccuracy: true,
+        maximumAge: 1000, // 1s
+        timeout: 2000 // 2s
     }
     var map= "";
     var tiles ="";
     var marker, circle, markerCameras;
     const socket = io();	
      
-     navigator.geolocation.watchPosition(({coords}) => {
-         lat = coords.latitude
-         lon = coords.longitude
-     
-         
-         	map = L.map('map').setView([lat, lon], 17);
-         	tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            	maxZoom: 30, attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-         	}).addTo(map);
+    navigator.geolocation.watchPosition(({coords}) => {
+        lat = coords.latitude
+        lon = coords.longitude
+        map = L.map('map').setView([lat, lon], 17);
+        tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 30, attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
          
 
-         const timestamp = Date.now()
-         if(localStorage.getItem('client') === null){ 
-            insertObjectCoords(lat, lon, timestamp)
-            localStorage.setItem('client', timestamp)
-         } else {
-            clientUniqueTimestampId =  localStorage.getItem('client')
-            console.log(clientUniqueTimestampId)
-            getSectorMarkers(lat,lon)
-             socket.emit('load_init_emit', 'hola'); // e.latlng);
-         }         
+    const timestamp = Date.now()
+    if(localStorage.getItem('client') === null){ 
+        insertObjectCoords(lat, lon, timestamp)
+        localStorage.setItem('client', timestamp)
+    } else {
+        clientUniqueTimestampId =  localStorage.getItem('client')
+        console.log(clientUniqueTimestampId)
+        getSectorMarkers(lat,lon)
+        socket.emit('load_init_emit', 'hola'); // e.latlng);
+    }         
          
 
-         //Loop through the markers array
-      /*   for (var i=0; i<markers.length; i++) {
+    //Loop through the markers array
+    /*   for (var i=0; i<markers.length; i++) {
 			
 			var lo = markers[i][1];
 			var la = markers[i][2];
@@ -289,7 +287,7 @@
     // junto con otro usuario activo que haya entrado
     var insertObjectCoords = function(la, lo, clientUniqueTimestampId){
 	    $.ajax({
-	      url: 'https://camarasdefotodeteccion.com/insertparking',
+	      url: 'https://www.refactorii.com/insertparking',
 	      method : 'POST',
 	      data: {"user_lat":la, "user_lon":lo, "state": clientUniqueTimestampId},
 	      success : function(data){ 
@@ -302,7 +300,7 @@
 	    // para hacer broadcast con socket.io a todos del punto actualizado
             // socket.emit( 'load_init_emit', {"user_lat":la, "user_lon":lo, "clientUniqueTimestampId": clientUniqueTimestampId} ); 	
 	   $.ajax({
-	      url: 'https://camarasdefotodeteccion.com/getsector',
+	      url: 'https://www.refactorii.com/getsector',
 	      method : 'POST',
 	      data: {"user_lat":la, "user_lon":lo,},
 	      success : function(data){
