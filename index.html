@@ -11,26 +11,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-  
-  <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
-  <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
-
   <style>
      html, body {
       height: 100%;
       margin: 0;
       padding: 0;
-    }
-    .leaflet-container {
-      height: 400px;
-      width: 600px;
-      max-width: 100%;
-      max-height: 100%;
-    }
-    #map {
-      height: 100%;
-      width: 100vw;
     }
      .container {
        width: 100%;
@@ -132,8 +117,6 @@
     </nav> -->
   </header>
 	
-  <div id="map"></div>
-	
   <div id="g_id_onload"
      data-client_id="980822676255-vntch0t28qbesul2bp5oc1galtoi8a97.apps.googleusercontent.com"
      data-callback="handleCredentialResponse"
@@ -170,152 +153,6 @@
       </tbody>
     </table>
   </div>
-	
-  <script>
-   async function obtenerOneTercero() {
-      usuario = JSON.parse(localStorage.getItem("usuario"));	   
-      // const url = 'https://23913d9f-9a23-4b9c-9311-875072a4c064-00-3b5jrh193tc3d.kirk.replit.dev/getOneTercero/' + usuario;
-      const url = 'https://23913d9f-9a23-4b9c-9311-875072a4c064-00-3b5jrh193tc3d.kirk.replit.dev/getOneGoogleSigninUser/' + usuario;
-      try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error('Error en la solicitud');
-        }
-        const data = await response.json();
-        if (data && data.tercero) {
-	   return data.tercero; // Devolver un array con el tercero
-	} else {
-	   throw new Error('No se encontró el tercero en los datos obtenidos');
-	}
-      } catch (error) {
-        console.error('Error:', error);
-        return [];
-      }
-    }
-
-    //document.addEventListener("DOMContentLoaded", async () => {
-   async function obtenerYMostrarTerceros() {
-      terceros = await obtenerOneTercero();
-      const contenedor = document.querySelector(".contenedor");
-      let productosHTML = "";
-      terceros.forEach((tercero) => {
-        localStorage.setItem("usuario", JSON.stringify(tercero));
-        productosHTML += `
-          <tr style="border: 1px solid #80808078">
-            <td>${GoogleSigninUser.FullName}</td>
-            <td>${GoogleSigninUser.GivenName}</td>
-            <td>${GoogleSigninUser.FamilyName}</td>
-            <td>${GoogleSigninUser.FechaIngreso}</td>
-            <td>${GoogleSigninUser.ImageURL}</td>
-            <td>${GoogleSigninUser.Email}</td>
-          </tr>
-        `;
-      });
-      contenedor.innerHTML = productosHTML;
-    //)};
-    };
-	  
-  </script>
-   
-  <script>
-    var greenIcon = L.icon({
-        iconUrl: '/icon.png'
-    });
-    const options = {
-        enableHighAccuracy: true,
-        maximumAge: 1000, // 1s
-        timeout: 2000 // 2s
-    }
-    var map= "";
-    var tiles ="";
-    var marker, circle, markerCameras;
-    const socket = io();	
-     
-    navigator.geolocation.watchPosition(({coords}) => {
-        lat = coords.latitude
-        lon = coords.longitude
-        map = L.map('map').setView([lat, lon], 17);
-        tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 30, attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
-         
-
-    const timestamp = Date.now()
-    if(localStorage.getItem('client') === null){ 
-        insertObjectCoords(lat, lon, timestamp)
-        localStorage.setItem('client', timestamp)
-    } else {
-        clientUniqueTimestampId =  localStorage.getItem('client')
-        console.log(clientUniqueTimestampId)
-        getSectorMarkers(lat,lon)
-        socket.emit('load_init_emit', 'hola'); // e.latlng);
-    }         
-         
-
-    //Loop through the markers array
-    /*   for (var i=0; i<markers.length; i++) {
-			
-			var lo = markers[i][1];
-			var la = markers[i][2];
-				var popupText = markers[i][0]; 
-				var markerLocation = new L.LatLng(la, lo);
-				var markerCameras = new L.Marker(markerLocation);
-				map.addLayer(markerCameras);
-			 
-				markerCameras.bindPopup(popupText);
-			
-         } */ 
-        
-         fun(lat, lon)
-     }, console.error, options);
-     
-    var fun = function (la, lo) {
-    function onLocationFound(e) {
-          var radius = e.accuracy / 2;
-          if (marker) { // check
-             map.removeLayer(marker); // remove
-          }
-          // marker = L.marker(e.latlng).addTo(map);
-
-          marker = L.marker(e.latlng, {icon: greenIcon}).addTo(map);
-      }
-      map.on('locationfound', onLocationFound);
-      map.locate({setView: true, watch: true, maxZoom: 17});
-    }
-
-    // al momento de ingreasr el usuario se ingresa a object_coords y es cargado en get sector
-    // junto con otro usuario activo que haya entrado
-    var insertObjectCoords = function(la, lo, clientUniqueTimestampId){
-	    $.ajax({
-	      url: 'https://www.refactorii.com/insertparking',
-	      method : 'POST',
-	      data: {"user_lat":la, "user_lon":lo, "state": clientUniqueTimestampId},
-	      success : function(data){ 
-		ciudad = data
-	      }, error: function(err){console.log('Failed');} 
-	    });
-     }
- 
-     var getSectorMarkers = function(la, lo){
-	    // para hacer broadcast con socket.io a todos del punto actualizado
-            // socket.emit( 'load_init_emit', {"user_lat":la, "user_lon":lo, "clientUniqueTimestampId": clientUniqueTimestampId} ); 	
-	   $.ajax({
-	      url: 'https://www.refactorii.com/getsector',
-	      method : 'POST',
-	      data: {"user_lat":la, "user_lon":lo,},
-	      success : function(data){
-                console.log(data)
-                data.forEach(function(marker) {
-                  L.marker([marker.latitude, marker.longitude]).addTo(map);
-                });
-	      }, error: function(err){console.log('Failed');} 
-           });
-     }
-
-    /* socket.on('load_init_on', function(msg){
-            console.log(msg);
-     }); */
-  </script>
 	
 </body>
 </html>
