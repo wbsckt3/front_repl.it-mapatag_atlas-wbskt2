@@ -133,22 +133,13 @@
     <table class="table" style="display: none">
       <thead>
         <tr style="background: #a2baf4; font-size: 9px;">
-          <th scope="col">Identificación</th>
-          <th scope="col">Apellido 1</th>
-          <th scope="col">Apellido 2</th>
-          <th scope="col">Nombre 1</th>
-          <th scope="col">Nombre 2</th>
+         <th scope="col">FullName</th>
+          <th scope="col">GivenName</th>
+          <th scope="col">FamilyName</th>
           <th scope="col">Fecha Ingreso</th>
-          <th scope="col">TRM</th>
-          <th scope="col">Recibido</th>
-          <th scope="col">Fecha Pago</th>
-          <th scope="col">Inversión (Inv)</th>
-          <th scope="col">% Retorno Inv.</th>
-          <th scope="col">Retorno Inv.</th>
-          <th scope="col">Valor a Pagar</th>
-          <th scope="col">Banco</th>
-          <th scope="col">Cuenta</th>
-          <th scope="col">Tipo de Cuenta</th>
+          <th scope="col">ImageURL</th>
+          <th scope="col">Email</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody class="contenedor">
@@ -188,22 +179,12 @@
         localStorage.setItem("usuario", JSON.stringify(tercero));
         productosHTML += `
           <tr style="border: 1px solid #80808078">
-            <td>${tercero.identificacion}</td>
-            <td>${tercero.apellido1}</td>
-            <td>${tercero.apellido2}</td>
-            <td>${tercero.nombre1}</td>
-            <td>${tercero.nombre2}</td>
-            <td>${tercero.fechaingreso}</td>
-            <td>${tercero.trm}</td>
-            <td>${tercero.recibido}</td>
-            <td>${tercero.fechapago}</td>
-            <td>${tercero.inversion}</td>
-            <td>${tercero.trmdia}</td>
-            <td>${tercero.retorno10}</td>
-            <td>${tercero.valorapagar}</td>
-            <td>${tercero.banco}</td>
-            <td>${tercero.cuenta}</td>
-            <td>${tercero.tipodecuenta}</td>
+            <td>${GoogleSigninUser.FullName}</td>
+            <td>${GoogleSigninUser.GivenName}</td>
+            <td>${GoogleSigninUser.FamilyName}</td>
+            <td>${GoogleSigninUser.FechaIngreso}</td>
+            <td>${GoogleSigninUser.ImageURL}</td>
+            <td>${GoogleSigninUser.Email}</td>
           </tr>
         `;
       });
