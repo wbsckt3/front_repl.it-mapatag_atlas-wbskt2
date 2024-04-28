@@ -28,13 +28,26 @@ header, footer {
 
 }
 
-.container {
+/*.container {
   flex: 1;
   max-width: 100%;
   overflow: hidden;
   box-sizing: border-box; /* Asegura que el padding del encabezado no afecte el ancho total */
   padding-top: 23px; /* Mueve el contenido hacia abajo para evitar el solapamiento con el encabezado */
+}*/
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
+
+.content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}	
 
 img {
   max-width: 100%;
@@ -176,7 +189,7 @@ h4{
     </div>
   </header>
 </div>
-<div>
+<div class="content">
     <h4>Ingresa con tu cuenta de Google | Sistema de Georreferenciación en tiempo real</h4>	
 </div>  
 <footer>
