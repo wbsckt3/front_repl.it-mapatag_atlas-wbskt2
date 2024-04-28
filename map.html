@@ -178,7 +178,7 @@ h4{
     // junto con otro usuario activo que haya entrado
     var insertObjectCoords = function(la, lo, clientUniqueTimestampId){
 	    $.ajax({
-	      url: 'https://camarasdefotodeteccion.com/insertparking',
+	      url: 'https://www.refactorii.com/insertparking',
 	      method : 'POST',
 	      data: {"user_lat":la, "user_lon":lo, "state": clientUniqueTimestampId},
 	      success : function(data){ 
@@ -191,7 +191,7 @@ h4{
 	    // para hacer broadcast con socket.io a todos del punto actualizado
             // socket.emit( 'load_init_emit', {"user_lat":la, "user_lon":lo, "clientUniqueTimestampId": clientUniqueTimestampId} ); 	
 	   $.ajax({
-	      url: 'https://camarasdefotodeteccion.com/getsector',
+	      url: 'https://www.refactorii.com/getsector',
 	      method : 'POST',
 	      data: {"user_lat":la, "user_lon":lo,},
 	      success : function(data){
