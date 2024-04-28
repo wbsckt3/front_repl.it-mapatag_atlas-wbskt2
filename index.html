@@ -153,6 +153,61 @@
       </tbody>
     </table>
   </div>
-	
+  <script>
+   async function obtenerOneTercero() {
+      usuario = JSON.parse(localStorage.getItem("usuario"));	   
+      // const url = 'https://23913d9f-9a23-4b9c-9311-875072a4c064-00-3b5jrh193tc3d.kirk.replit.dev/getOneTercero/' + usuario;
+      const url = 'https://v6dxrc-3000.csb.app/getOneTercero/' + usuario;
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Error en la solicitud');
+        }
+        const data = await response.json();
+        if (data && data.tercero) {
+	   return data.tercero; // Devolver un array con el tercero
+	} else {
+	   throw new Error('No se encontró el tercero en los datos obtenidos');
+	}
+      } catch (error) {
+        console.error('Error:', error);
+        return [];
+      }
+    }
+
+    //document.addEventListener("DOMContentLoaded", async () => {
+   async function obtenerYMostrarTerceros() {
+      terceros = await obtenerOneTercero();
+      const contenedor = document.querySelector(".contenedor");
+      let productosHTML = "";
+      terceros.forEach((tercero) => {
+        localStorage.setItem("usuario", JSON.stringify(tercero));
+        productosHTML += `
+          <tr style="border: 1px solid #80808078">
+            <td>${tercero.identificacion}</td>
+            <td>${tercero.apellido1}</td>
+            <td>${tercero.apellido2}</td>
+            <td>${tercero.nombre1}</td>
+            <td>${tercero.nombre2}</td>
+            <td>${tercero.contacto}</td>
+            <td>${tercero.fechaingreso}</td>
+            <td>${tercero.trm}</td>
+            <td>${tercero.recibido}</td>
+            <td>${tercero.fechapago}</td>
+            <td>${tercero.inversion}</td>
+            <td>${tercero.trmdia}</td>
+            <td>${tercero.retorno10}</td>
+            <td>${tercero.valorapagar}</td>
+            <td>${tercero.banco}</td>
+            <td>${tercero.cuenta}</td>
+            <td>${tercero.tipodecuenta}</td>
+          </tr>
+        `;
+      });
+      contenedor.innerHTML = productosHTML;
+    //)};
+    };
+	  
+  </script>
 </body>
 </html>
