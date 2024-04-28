@@ -42,6 +42,58 @@
       height: 100%;
       width: 100vw;
     }
+header, footer {
+  background-color: #efefef;
+  color: #1174ba; /* Ajusta el color del texto para que sea visible en el fondo */
+  padding: 10px;
+  text-align: center;
+}
+
+/*.container {
+  flex: 1;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box; /* Asegura que el padding del encabezado no afecte el ancho total */
+  padding-top: 23px; /* Mueve el contenido hacia abajo para evitar el solapamiento con el encabezado */
+}*/
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}	
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 32px auto;
+  margin-top: 15px;
+}
+
+footer {
+  font-weight: bold;
+  padding: 32px;
+  color:#b8bbbd;
+}
+h4{
+  font-size: 23px;
+  text-align: center;
+  color: #1174ba;
+  margin-top: -40px;
+}
+.content h1,
+.content h4 {
+  display: block;
+}
+	  
   </style>
 
 </head>
@@ -55,7 +107,11 @@
 <div class="content">	
     <div id="map"></div>
 </div>
-  
+</div>  
+<footer>
+   Powered by Refactorii@2024
+</footer> 
+	
   <script>
     var greenIcon = L.icon({
       iconUrl: 'https://wbsckt3.github.io/front_REPLIT-mapatag_ATLAS-wbskt2/icon.png'
