@@ -110,11 +110,11 @@
 <body>
   <header>
     <h3 >mappi</h3>
-    <!-- <nav>
+    <nav>
       <ul>
 	<li><h4 class="mb-3"></h4></li>
       </ul> 
-    </nav> -->
+    </nav>
   </header>
 	
   <div id="g_id_onload"
@@ -156,8 +156,7 @@
   <script>
    async function obtenerOneTercero() {
       usuario = JSON.parse(localStorage.getItem("usuario"));	   
-      // const url = 'https://23913d9f-9a23-4b9c-9311-875072a4c064-00-3b5jrh193tc3d.kirk.replit.dev/getOneTercero/' + usuario;
-      const url = 'https://v6dxrc-3000.csb.app/getOneTercero/' + usuario;
+      const url = 'https://23913d9f-9a23-4b9c-9311-875072a4c064-00-3b5jrh193tc3d.kirk.replit.dev/getOneGoogleSigninUser/' + usuario;
       try {
         const response = await fetch(url);
         if (!response.ok) {
