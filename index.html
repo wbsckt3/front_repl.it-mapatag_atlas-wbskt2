@@ -183,23 +183,12 @@
         localStorage.setItem("usuario", JSON.stringify(tercero));
         productosHTML += `
           <tr style="border: 1px solid #80808078">
-            <td>${tercero.identificacion}</td>
-            <td>${tercero.apellido1}</td>
-            <td>${tercero.apellido2}</td>
-            <td>${tercero.nombre1}</td>
-            <td>${tercero.nombre2}</td>
-            <td>${tercero.contacto}</td>
-            <td>${tercero.fechaingreso}</td>
-            <td>${tercero.trm}</td>
-            <td>${tercero.recibido}</td>
-            <td>${tercero.fechapago}</td>
-            <td>${tercero.inversion}</td>
-            <td>${tercero.trmdia}</td>
-            <td>${tercero.retorno10}</td>
-            <td>${tercero.valorapagar}</td>
-            <td>${tercero.banco}</td>
-            <td>${tercero.cuenta}</td>
-            <td>${tercero.tipodecuenta}</td>
+            <td>${GoogleSigninUser.FullName}</td>
+            <td>${GoogleSigninUser.GivenName}</td>
+            <td>${GoogleSigninUser.FamilyName}</td>
+            <td>${GoogleSigninUser.FechaIngreso}</td>
+            <td>${GoogleSigninUser.ImageURL}</td>
+            <td>${GoogleSigninUser.Email}</td>
           </tr>
         `;
       });
