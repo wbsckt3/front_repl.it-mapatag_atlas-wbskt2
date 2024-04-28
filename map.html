@@ -98,7 +98,7 @@ h4{
 
 </head>
 
-<body>
+<body onload="showGoogleSigninuser()">
 
 <div id="map"></div>
 
@@ -208,7 +208,10 @@ h4{
             console.log(msg);
         });
 
-  
+     function showGoogleSigninUser(){
+	     const formData = JSON.parse(localStorage.getItem("formData"));
+	     alert(formData)
+     }
 
   </script>
 </body>
