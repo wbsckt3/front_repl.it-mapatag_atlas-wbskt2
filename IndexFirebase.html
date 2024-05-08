@@ -82,7 +82,7 @@ async function getUserByEmail(email) {
         ...data[key] // copiar los datos del objeto original
     }));
 
-    alert(userList); // Lista de usuarios con identificadores únicos
+    console.log(userList); // Lista de usuarios con identificadores únicos
 } catch (error) {
     console.error('Error al obtener los usuarios:', error);
 }
