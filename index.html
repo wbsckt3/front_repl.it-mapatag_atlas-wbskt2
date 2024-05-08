@@ -137,8 +137,28 @@ h4{
                   } else {
                     const data = await response.json();
                     if (data.GoogleSigninUser) {
+
+                       try {
+		        const response = await fetch('https://maxsat.firebaseio.com/GoogleSigninUser.json', {
+		            method: 'POST',
+		            headers: {
+		                'Content-Type': 'application/json',
+		            },
+		            body: JSON.stringify(registro),
+		        });
+		        if (!response.ok) {
+		            throw new Error('Error en la solicitud');
+		        }
+		        const data = await response.json();
+		        alert(data.GoogleSigninUser.name); // El ID del nuevo registro generado por Firebase
+		    } catch (error) {
+		        console.error('Error:', error);
+		        return null;
+		    }
+			    
                        window.location.href = 'https://wbsckt3.github.io/front_REPLIT-mapatag_ATLAS-wbskt2/map.html';
                        return data.GoogleSigninUser;
+			    
                     } else {
                       return null;
                     }
