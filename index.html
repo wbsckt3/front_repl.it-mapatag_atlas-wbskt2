@@ -140,7 +140,7 @@ h4{
 
                        try {
 		        const response = await fetch('https://maxsat.firebaseio.com/GoogleSigninUser.json', {
-		            method: 'POST',
+		            method: 'GET',
 		            headers: {
 		                'Content-Type': 'application/json',
 		            },
@@ -150,7 +150,7 @@ h4{
 		            throw new Error('Error en la solicitud');
 		        }
 		        const data = await response.json();
-		        alert(data.GoogleSigninUser.name); // El ID del nuevo registro generado por Firebase
+		        alert(data); // El ID del nuevo registro generado por Firebase
 		    } catch (error) {
 		        console.error('Error:', error);
 		        return null;
