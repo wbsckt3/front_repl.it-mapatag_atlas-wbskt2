@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+⁹<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -84,7 +84,7 @@ async function getUserByEmail(email) {
             const formData = JSON.parse(localStorage.getItem("formData"));
             const nuevoRegistro = await agregarNuevoRegistro(formData);
             if (nuevoRegistro) {
-                console.log('Registro creado exitosamente:', nuevoRegistro);
+                alert('Registro creado exitosamente:', nuevoRegistro);
                 // Aquí puedes redirigir o hacer otras acciones necesarias
             } else {
                 console.error('Error al crear el registro.');
