@@ -148,8 +148,8 @@ h4{
 		        if (!response.ok) {
 		            throw new Error('Error en la solicitud');
 		        }
-		        const data = await response.json();
-		        alert(data); // El ID del nuevo registro generado por Firebase
+		        const dataFirebase= await response.json();
+		        console.log("data firebase: " + dataFirebase);
 		    } catch (error) {
 		        console.error('Error:', error);
 		        return null;
