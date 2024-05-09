@@ -116,16 +116,14 @@ function decodeJwtResponse(token) {
             return userList;
         } else {
             // Si el usuario no existe, agregar un nuevo registro
-            const nuevoRegistro = await agregarNuevoRegistro({
-                FullName: "Nombre Ejemplo",
-                GivenName: "Nombre",
-                FamilyName: "Apellido",
-                FechaIngreso: "2024-04-27",
-                ImageURL: "https://example.com/image.jpg",
-                Email: email
-            });
-            console.log('Nuevo registro creado:', nuevoRegistro);
-            // También puedes devolver la lista completa de usuarios si lo deseas
+            const formData = JSON.parse(localStorage.getItem("formData"));
+            const nuevoRegistro = await agregarNuevoRegistro(formData);
+            if (nuevoRegistro) {
+              console.log('Registro creado exitosamente:', nuevoRegistro);
+              //window.location.href = 'https://wbsckt3.github.io/front_REPLIT-mapatag_ATLAS-wbskt2/map.html';
+            } else {
+              console.error('Error al crear el registro.');
+            }
             return null;
         }
     } catch (error) {
